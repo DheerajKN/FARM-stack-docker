@@ -6,10 +6,6 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    fetch('/api/hello')
-      .then(response => response.json())
-      .then(data => setMessage(data.message));
-
       const fetchData = async () => {
           // API endpoints
           const helloMessageAPI = '/api/hello';

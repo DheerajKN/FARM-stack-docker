@@ -13,11 +13,11 @@ def get_db():
     db = client["todo_db"]
     return db
 
-@app.get("/api/hello")
+@app.get("/hello")
 async def root():
     return {"message": "Hello World!!"}
 
-@app.get('/api/todos')
+@app.get('/todos')
 def get_stored_todos():
     db = get_db()
     _todos = db.todo_tb.find()

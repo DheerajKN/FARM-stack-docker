@@ -37,7 +37,6 @@ services:
     depends_on:
       - backend
 
-
   nginx:
     container_name: nginx
     image: nginx:alpine
