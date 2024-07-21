@@ -1,4 +1,29 @@
 services:
+  mongo:
+    image: mongo:4.2-bionic
+    restart: always
+    hostname: todo_mongodb
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=todo_db
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - ./backend/mongo/init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+      # - mongodbdata:/data/db
+    networks:
+      - app-network
+
+  backend:
+    container_name: backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    depends_on:
+      - mongo
+
   frontend:
     container_name: frontend
     build: 
@@ -8,15 +33,12 @@ services:
       - app-network
     ports:
       - "80:80"
-
-  backend:
-    container_name: backend
-    build: 
-      context: ./backend
-      dockerfile: Dockerfile
-    networks:
-      - app-network
+    depends_on:
+      - backend
 
 networks:
   app-network:
     driver: bridge
+
+# volumes:
+#     mongodbdata:

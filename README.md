@@ -1,4 +1,7 @@
-FARM Stack in Docker
+<p style="font-weight: bold; text-align: center">FARM Stack in Docker</p>
+
+![FARM-Stack](./FARM-stack.png)
+
 
 To Run in Dev
 ```
