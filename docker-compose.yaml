@@ -1,5 +1,6 @@
 services:
   frontend:
+    container_name: frontend
     build: 
       context: ./frontend
       dockerfile: Dockerfile
@@ -7,6 +8,14 @@ services:
       - app-network
     ports:
       - "80:80"
+
+  backend:
+    container_name: backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - app-network
 
 networks:
   app-network:
